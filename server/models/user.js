@@ -25,19 +25,19 @@ module.exports = (sequelize, DataTypes) => {
         }
     },
         {
+            modelName: "user",
             hooks: {
                 beforeSave: async (user) => {
                     user.password = await bcrypt.hash(user.password, 8);
                 },
             },
-        })
+        }
+    )
 
-    User.prototype.validPassword = function () {
+    User.prototype.validPassword = function (password) {
         return bcrypt.compare(password, this.password);
     }
 
-    User.associate = (models) => {
-        User.hasOne(models.Account)
-    }
+
     return User;
 }

@@ -10,7 +10,15 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({})
+import UserReducer from './store/reducers/user';
+import AccountReducer from './store/reducers/account';
+
+
+const rootReducer = combineReducers({
+    user: UserReducer,
+    account: AccountReducer,
+})
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 

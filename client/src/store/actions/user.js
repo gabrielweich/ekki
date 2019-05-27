@@ -1,21 +1,33 @@
 import axios from 'axios';
+import { SIGNIN, SIGNUP } from '../types';
+import { loadAccount } from './account';
 
-
-export const create = (user) => async dispatch => {
+export const signup = (user) => async dispatch => {
     try {
         const res = await axios.post('/api/user', user)
-        console.log(res)
+        dispatch({ type: SIGNUP, payload: res.data.data })
+        dispatch(loadAccount())
     } catch (error) {
         console.log(error)
     }
 }
 
 
-export const login = (cpf, password) => async dispatch => {
+export const signin = (cpf, password) => async dispatch => {
     try {
         const res = await axios.post('/api/user/login', { cpf, password })
-        console.log(res)
+        dispatch({ type: SIGNIN, payload: res.data.data })
+        dispatch(loadAccount())
     } catch (error) {
+        console.log(error)
+    }
+}
+
+export const logout = () => async dispatch => {
+    try {
+        await axios.post('/api/user/logout')
+    }
+    catch (error) {
         console.log(error)
     }
 }

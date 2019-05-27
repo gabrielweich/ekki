@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Account.associate = (models) => {
-        Account.belongsTo(models.User, { foreingKey: 'userId' })
+        Account.belongsTo(models.User)
     }
 
     return Account;

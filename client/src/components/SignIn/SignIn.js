@@ -4,7 +4,7 @@ import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
-import { login } from '../../store/actions/user';
+import { signin } from '../../store/actions/user';
 
 import './SignIn.css'
 
@@ -13,7 +13,7 @@ class SignIn extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.login(values.cpf, values.password)
+                this.props.signin(values.cpf, values.password)
             }
         });
     };
@@ -57,4 +57,4 @@ class SignIn extends React.Component {
 
 
 
-export default connect(null, { login })(Form.create({})(SignIn));
+export default connect(null, { signin })(Form.create({})(SignIn));

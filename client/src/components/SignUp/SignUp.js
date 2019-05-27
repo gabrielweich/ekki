@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
-import { create } from '../../store/actions/user';
+import { signup } from '../../store/actions/user';
 
 import './SignUp.css'
 
@@ -12,7 +12,8 @@ class SignUp extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.create(values)
+                console.log("vai signupa")
+                this.props.signup(values)
             }
         });
     };
@@ -75,4 +76,4 @@ class SignUp extends React.Component {
 }
 
 
-export default connect(null, { create })(Form.create({})(SignUp));
+export default connect(null, { signup })(Form.create({})(SignUp));
