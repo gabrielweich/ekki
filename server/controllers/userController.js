@@ -12,7 +12,7 @@ exports.post = async (req, res) => {
             return res.status(400).send({ error: 'User already exists' });
 
         const user = await User.create({ cpf, name, password, phone });
-        const account = await Account.create({ UserId: user.id, balance: DEFAULT_BALANCE, limit: DEFAULT_LIMIT })
+        const account = await Account.create({ userId: user.id, balance: DEFAULT_BALANCE, limit: DEFAULT_LIMIT })
         req.session.userId = user.id
         res.status(201).send({ data: user });
     }

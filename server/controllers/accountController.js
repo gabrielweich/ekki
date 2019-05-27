@@ -4,12 +4,12 @@ const { Account } = require('../models');
 exports.get = async (req, res) => {
     try {
         const { userId } = req.session;
-        const account = await Account.findOne({ where: { UserId: userId } })
+        const account = await Account.findOne({ where: { userId } })
 
         if (!account)
             return res.status(400).send({ error: 'Account not found' });
 
-        res.status(201).send({ data: account });
+        res.status(200).send({ data: account });
 
     }
     catch (error) {

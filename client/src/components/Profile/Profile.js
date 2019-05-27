@@ -13,7 +13,7 @@ class Profile extends React.Component {
                 </div>
                 <div className="profile-info">
                     <h1>{`Bem-vindo ${this.props.user.name}`}</h1>
-                    <h2>{`R$ ${this.props.account.balance}`}</h2>
+                    <h2>{`R$ ${!!this.props.account.balance ? this.props.account.balance.toLocaleString('pt-BR') : '0,00'}`}</h2>
                 </div>
                 <div className="profile-action">
                     <button className="profile-button">Transferir</button>

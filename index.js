@@ -32,7 +32,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
 
 const PORT = process.env.PORT || 5000;
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     app.listen(PORT)
     app.on('error', (error) => console.log(`An error has occurred: ${error}`));
     app.on('listening', () => console.log(`Server listening on port ${PORT}`));

@@ -26,6 +26,9 @@ h1, h2, h3 {
     transition: 0.3s;
 }
 
+.profile-title {
+    cursor: default;
+}
 
 .profile-title:hover {
     color: #dbeeff;
