@@ -17,7 +17,7 @@ exports.post = async (req, res) => {
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Internal server error' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor' })
     }
 }
 
@@ -32,6 +32,6 @@ exports.getAll = async (req, res) => {
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Internal server error' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor' })
     }
 }

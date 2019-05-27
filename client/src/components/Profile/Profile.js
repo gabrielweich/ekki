@@ -2,15 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {logout} from '../../store/actions/user';
+
 import "./Profile.css";
 
 class Profile extends React.Component {
     render() {
+        console.log(this.props.user)
         return (
             <div className="profile-container">
                 <div className="profile-header">
                     <h3 className="profile-title">Ekki</h3>
-                    <h3 className="profile-logout" >Sair</h3>
+                    <h3 className="profile-logout" onClick={this.props.logout} >Sair</h3>
                 </div>
                 <div className="profile-info">
                     <h1>{`Bem-vindo ${this.props.user.name}`}</h1>
@@ -36,4 +39,4 @@ const mapStateToProps = state => ({
     account: state.account
 })
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, {logout})(Profile);

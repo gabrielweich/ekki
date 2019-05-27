@@ -11,12 +11,14 @@ const requireLogin = require('./middlewares/requireLogin');
 
 router.post('/user', userController.post);
 router.post('/user/login', userController.login);
+router.post('/user/logout', requireLogin, userController.logout);
+router.get('/user/:cpf', requireLogin, userController.get);
 
 router.get('/account', requireLogin, accountController.get)
 
 router.post('/contact', requireLogin, contactController.post);
 router.get('/contact', requireLogin, contactController.getAll);
-router.delete('/contact', requireLogin, contactController.delete);
+router.delete('/contact/:id', requireLogin, contactController.delete);
 
 router.post('/transaction', requireLogin, transactionController.post);
 router.get('/transaction', requireLogin, transactionController.getAll);

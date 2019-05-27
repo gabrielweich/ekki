@@ -1,0 +1,12 @@
+.add-contact-title {
+    color: #798086;
+}
+
+.add-contact-login-form {
+    max-width: 300px;
+    display: flex;
+}
+
+.add-contact-button {
+    margin-left: 10px;
+}

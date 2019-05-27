@@ -7,13 +7,13 @@ exports.get = async (req, res) => {
         const account = await Account.findOne({ where: { userId } })
 
         if (!account)
-            return res.status(400).send({ error: 'Account not found' });
+            return res.status(400).send({ error: 'Conta não encontrada.' });
 
         res.status(200).send({ data: account });
 
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Internal server error' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor' })
     }
 }
