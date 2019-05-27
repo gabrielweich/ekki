@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Switch, Link } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
@@ -12,11 +12,8 @@ import './Login.css';
 class Login extends React.Component {
     render() {
         console.log(this.props)
-        if (!!this.props.user.id) {
-            console.log("hahahah")
+        if (!!this.props.user.id)
             return <Redirect to="/account" />
-        }
-
 
         return (
             <div className="login-container">

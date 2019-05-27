@@ -17,12 +17,10 @@ const App = (props) => {
   )
 
   if (!!props.user.id) {
-    console.log("tem idddddd")
-    console.log(props)
     routes = (
       <Switch>
         <Route path="/account" component={Account} />
-        <Route path="/" component={Login} />
+        <Redirect to="account" />
       </Switch>
     )
   }

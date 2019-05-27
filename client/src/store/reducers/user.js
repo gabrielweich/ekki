@@ -1,4 +1,4 @@
-import { SIGNIN, SIGNUP } from '../types'
+import { SIGNIN, SIGNUP, LOGOUT } from '../types'
 
 const initialState = {}
 
@@ -7,6 +7,8 @@ const reducer = (state = initialState, action) => {
         case SIGNIN:
         case SIGNUP:
             return { ...state, ...action.payload }
+        case LOGOUT:
+            return {}
         default: return state;
     }
 }

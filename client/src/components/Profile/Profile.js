@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import "./Profile.css";
 
@@ -16,7 +17,12 @@ class Profile extends React.Component {
                     <h2>{`R$ ${!!this.props.account.balance ? this.props.account.balance.toLocaleString('pt-BR') : '0,00'}`}</h2>
                 </div>
                 <div className="profile-action">
-                    <button className="profile-button">Transferir</button>
+                    <Link to="/account">
+                        <button className="profile-button">Transferências</button>
+                    </Link>
+                    <Link to="/account/contact">
+                        <button className="profile-button">Contatos</button>
+                    </Link>
                 </div>
             </div>
         )

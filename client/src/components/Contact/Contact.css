@@ -1,0 +1,8 @@
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-header-title {
+    color: #798086;
+}

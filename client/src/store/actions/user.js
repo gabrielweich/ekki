@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGNIN, SIGNUP } from '../types';
+import { SIGNIN, SIGNUP, LOGOUT } from '../types';
 import { loadAccount } from './account';
 
 export const signup = (user) => async dispatch => {
@@ -26,6 +26,7 @@ export const signin = (cpf, password) => async dispatch => {
 export const logout = () => async dispatch => {
     try {
         await axios.post('/api/user/logout')
+        dispatch({ type: LOGOUT })
     }
     catch (error) {
         console.log(error)

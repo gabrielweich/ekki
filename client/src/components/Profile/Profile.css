@@ -2,7 +2,7 @@
     background-color: #1890ff;
     padding: 30px;
     display: flex;
-    max-height: 300px;
+    max-height: 350px;
     flex: 1;
     flex-direction: column;
 }
@@ -56,6 +56,9 @@ h1, h2, h3 {
     padding: 5px 20px;
     border-radius: 30px;
     cursor: pointer;
+    margin: 0px 10px;
+    margin-bottom: 70px;
+    outline: none;
 }
 
 .profile-button:hover {
