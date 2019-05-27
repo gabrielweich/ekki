@@ -38,3 +38,19 @@ exports.getAll = async (req, res) => {
         res.status(500).send({ error: 'Internal server error' })
     }
 }
+
+
+exports.delete = async (req, res) => {
+    try {
+        const { userId } = req.session;
+        const { contactId } = req.body;
+
+        await Contact.destroy({where: {userId, contactId}})
+        res.status(200).send({ data: {userId, contactId} });
+
+    }
+    catch(error) {
+        console.log(error)
+        res.status(500).send({ error: 'Internal server error' })
+    }
+}

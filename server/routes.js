@@ -16,6 +16,7 @@ router.get('/account', requireLogin, accountController.get)
 
 router.post('/contact', requireLogin, contactController.post);
 router.get('/contact', requireLogin, contactController.getAll);
+router.delete('/contact', requireLogin, contactController.delete);
 
 router.post('/transaction', requireLogin, transactionController.post);
 router.get('/transaction', requireLogin, transactionController.getAll);
