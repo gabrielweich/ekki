@@ -1,4 +1,4 @@
-import { LOAD_CONTACTS, LOAD_CONTACT_USER } from '../types';
+import { LOAD_CONTACTS, LOAD_CONTACT_USER, CLEAN_CONTACT_USER } from '../types';
 
 const initialState = {
     contacts: [],
@@ -8,9 +8,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CONTACTS:
-            return {...state, contacts: action.payload }
+            return { ...state, contacts: [...action.payload] }
         case LOAD_CONTACT_USER:
-            return {...state, userContact: action.payload }
+            return { ...state, userContact: { ...action.payload } }
+        case CLEAN_CONTACT_USER:
+            return { ...state, userContact: {} }
         default: return state;
     }
 }

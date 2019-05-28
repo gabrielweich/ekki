@@ -3,7 +3,7 @@ import './AddContact.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
 
-import { loadUser, saveContact } from '../../store/actions/contact';
+import { loadUser, saveContact, cleanContactUser } from '../../store/actions/contact';
 
 class AddContact extends React.Component {
     handleSubmit = e => {
@@ -16,9 +16,13 @@ class AddContact extends React.Component {
         });
     };
 
+    componentDidMount() {
+        this.props.cleanContactUser()
+    }
+
     saveContact = () => {
         this.props.saveContact(this.props.userContact.id)
-        this.props.history.push('/account/contacts')
+        this.props.history.goBack()
     }
 
     render() {
@@ -32,6 +36,7 @@ class AddContact extends React.Component {
                             rules: [{ required: true, message: 'Digite o CPF de quem você deseja adicionar!' }],
                         })(
                             <Input
+                                autoFocus
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="CPF"
                             />,
@@ -61,4 +66,4 @@ const mapStateToProps = state => ({
     contacts: state.contact.contacts
 })
 
-export default connect(mapStateToProps, {loadUser, saveContact})(Form.create({})(AddContact));
+export default connect(mapStateToProps, { loadUser, saveContact, cleanContactUser })(Form.create({})(AddContact));

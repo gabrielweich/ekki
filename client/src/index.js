@@ -12,13 +12,15 @@ import thunk from 'redux-thunk';
 
 import UserReducer from './store/reducers/user';
 import AccountReducer from './store/reducers/account';
-import ContactReducer from './store/reducers/contact'
+import ContactReducer from './store/reducers/contact';
+import TransactionReducer from './store/reducers/transaction';
 
 
 const rootReducer = combineReducers({
     user: UserReducer,
     account: AccountReducer,
-    contact: ContactReducer
+    contact: ContactReducer,
+    transaction: TransactionReducer,
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

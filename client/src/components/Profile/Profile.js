@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import {logout} from '../../store/actions/user';
+import { logout } from '../../store/actions/user';
 
 import "./Profile.css";
 
@@ -21,7 +21,7 @@ class Profile extends React.Component {
                 </div>
                 <div className="profile-action">
                     <Link to="/account">
-                        <button className="profile-button">Transferências</button>
+                        <button className="profile-button">Transações</button>
                     </Link>
                     <Link to="/account/contact">
                         <button className="profile-button">Contatos</button>
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
     account: state.account
 })
 
-export default connect(mapStateToProps, {logout})(Profile);
+export default connect(mapStateToProps, { logout })(Profile);

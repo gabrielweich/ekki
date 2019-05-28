@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 
 const App = (props) => {
-  console.log(props.user)
   let routes = (
     <Switch>
       <Route path="/" component={Login} />

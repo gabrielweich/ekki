@@ -6,6 +6,8 @@ import History from '../../components/History/History';
 import Contact from '../../components/Contact/Contact';
 import AddContact from '../../components/AddContact/AddContact';
 import Profile from '../../components/Profile/Profile';
+import Transfer from '../../components/Transfer/Transfer';
+
 
 import './Account.css'
 
@@ -20,7 +22,7 @@ class Account extends React.Component {
                         <Route exact path='/account' component={History} />
                         <Route path='/account/contact' component={Contact} />
                         <Route path='/account/add_contact' component={AddContact} />
-                        <Route path='/account/transfer' component={History} />
+                        <Route path='/account/transfer' component={Transfer} />
                         <Redirect to="/account" />
                     </Switch>
                 </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { LOAD_CONTACTS, SAVE_CONTACT, DELETE_CONTACT, LOAD_CONTACT_USER } from '../types';
+import { LOAD_CONTACTS, LOAD_CONTACT_USER, CLEAN_CONTACT_USER } from '../types';
 
 export const loadContacts = () => async dispatch => {
     try {
@@ -12,34 +12,38 @@ export const loadContacts = () => async dispatch => {
     }
 }
 
+export const cleanContactUser = () => ({
+    type: CLEAN_CONTACT_USER
+})
 
 export const loadUser = (cpf) => async dispatch => {
     try {
+        dispatch(cleanContactUser())
         const res = await axios.get(`/api/user/${cpf}`)
-        dispatch({type: LOAD_CONTACT_USER, payload: res.data.data})
+        dispatch({ type: LOAD_CONTACT_USER, payload: res.data.data })
     }
-    catch(error){
+    catch (error) {
         console.log(error)
     }
 }
 
 export const saveContact = (contactId) => async dispatch => {
     try {
-        const res = await axios.post('/api/contact', {contactId})
+        const res = await axios.post('/api/contact', { contactId })
         dispatch(loadContacts())
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
     }
 }
 
 export const deleteContact = (contactId) => async dispatch => {
-    console.log({contactId})
+    console.log({ contactId })
     try {
         const res = await axios.delete(`/api/contact/${contactId}`)
         dispatch(loadContacts())
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
     }
 }

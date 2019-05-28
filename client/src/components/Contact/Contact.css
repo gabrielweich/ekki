@@ -9,6 +9,7 @@
 
 
 .contact-title {
+    margin: 0px;
     color: #1890ff;
 }
 
@@ -19,4 +20,7 @@
 .contact-item {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #aaafb350;
+    align-items: center;
+    padding: 15px 5px;
 }
