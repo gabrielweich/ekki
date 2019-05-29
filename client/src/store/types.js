@@ -1,5 +1,7 @@
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
+export const SIGNIN_ERROR = 'SIGNIN_ERROR';
+export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const LOGOUT = 'LOGOUT';
 
 export const LOAD_ACCOUNT = 'LOAD_ACCOUNT';
@@ -9,7 +11,10 @@ export const LOAD_CONTACT_USER = 'LOAD_CONTACT_USER';
 export const CLEAN_CONTACT_USER = 'CLEAN_CONTACT_USER';
 
 export const SAVE_CONTACT = 'SAVE_CONTACT';
+export const SAVE_CONTACT_ERROR = 'SAVE_CONTACT_ERROR'
+
 export const DELETE_CONTACT = 'DELETE_CONTACT';
 
 
 export const LOAD_TRANSACTIONS = 'LOAD_TRANSACTIONS';
+export const SAVE_TRANSACTION_ERROR = 'SAVE_CONTACT_ERROR';

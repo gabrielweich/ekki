@@ -26,9 +26,9 @@ class Contact extends React.Component {
                 </div>
                 <div className="contact-list">
                     {
-                        this.props.contact.contacts.length
+                        this.props.contacts.length
                             ?
-                            this.props.contact.contacts.map(contact => {
+                            this.props.contacts.map(contact => {
                                 console.log(contact)
                                 return <div className="contact-item"><h2 className="contact-title">{contact.contact.name}</h2><Button onClick={() => this.props.deleteContact(contact.contactId)} shape="circle" icon="delete" /></div>
                             })
@@ -42,7 +42,7 @@ class Contact extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    contact: state.contact
+    contacts: state.contact.contacts
 })
 
 export default connect(mapStateToProps, { loadContacts, deleteContact })(Contact);

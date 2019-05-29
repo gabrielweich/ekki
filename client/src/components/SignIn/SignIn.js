@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, Typography } from 'antd';
 
 import { Link } from 'react-router-dom'
 
@@ -9,11 +9,16 @@ import { signin } from '../../store/actions/user';
 import './SignIn.css'
 
 class SignIn extends React.Component {
+    state = {
+        loading: false
+    }
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                this.setState({ loading: true })
                 this.props.signin(values.cpf, values.password)
+                    .then(_ => this.setState({ loading: false }))
             }
         });
     };
@@ -43,6 +48,7 @@ class SignIn extends React.Component {
                         />,
                     )}
                 </Form.Item>
+                {this.props.signinError && !this.state.loading && <Typography.Text className="sign-in-error-message" type="danger">{this.props.signinError}</Typography.Text>}
                 <Form.Item>
 
                     <Button type="primary" htmlType="submit" className="signin-form-button">
@@ -55,6 +61,9 @@ class SignIn extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    signinError: state.user.signinError
+})
 
 
-export default connect(null, { signin })(Form.create({})(SignIn));
+export default connect(mapStateToProps, { signin })(Form.create({})(SignIn));

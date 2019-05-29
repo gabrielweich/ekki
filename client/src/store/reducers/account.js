@@ -1,11 +1,13 @@
 import { LOAD_ACCOUNT } from '../types';
 
-const initialState = {}
+const initialState = {
+    account: {}
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ACCOUNT:
-            return { ...state, ...action.payload }
+            return { ...state, account: {...action.payload} }
         default: return state;
     }
 }

@@ -1,7 +1,8 @@
 import { LOAD_TRANSACTIONS } from '../types';
 
 const initialState = {
-    transactions: []
+    transactions: [],
+    transaction_error: null
 }
 
 const reducer = (state = initialState, action) => {

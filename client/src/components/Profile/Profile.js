@@ -35,8 +35,8 @@ class Profile extends React.Component {
 
 
 const mapStateToProps = state => ({
-    user: state.user,
-    account: state.account
+    user: state.user.user,
+    account: state.account.account
 })
 
 export default connect(mapStateToProps, { logout })(Profile);

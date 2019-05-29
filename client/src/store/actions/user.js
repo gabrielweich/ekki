@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGNIN, SIGNUP, LOGOUT } from '../types';
+import { SIGNIN, SIGNUP, LOGOUT, SIGNIN_ERROR, SIGNUP_ERROR } from '../types';
 import { loadAccount } from './account';
 
 export const signup = (user) => async dispatch => {
@@ -8,7 +8,7 @@ export const signup = (user) => async dispatch => {
         dispatch({ type: SIGNUP, payload: res.data.data })
         dispatch(loadAccount())
     } catch (error) {
-        console.log(error)
+        dispatch({type: SIGNUP_ERROR, payload: error.response.data.error})
     }
 }
 
@@ -19,7 +19,7 @@ export const signin = (cpf, password) => async dispatch => {
         dispatch({ type: SIGNIN, payload: res.data.data })
         dispatch(loadAccount())
     } catch (error) {
-        console.log(error)
+        dispatch({type: SIGNIN_ERROR, payload: error.response.data.error})
     }
 }
 
@@ -29,6 +29,6 @@ export const logout = () => async dispatch => {
         dispatch({ type: LOGOUT })
     }
     catch (error) {
-        console.log(error)
+        console.log(error.response)
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ class SignUp extends React.Component {
                         rules: [{ required: true, message: 'Digite seu nome.' }],
                     })(
                         <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="contacts" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder="Nome"
                         />,
                     )}
@@ -47,7 +47,7 @@ class SignUp extends React.Component {
                         rules: [{ required: true, message: 'Digite seu telefone.' }],
                     })(
                         <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder="Telefone"
                         />,
                     )}

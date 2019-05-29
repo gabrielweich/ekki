@@ -2,7 +2,8 @@ import { LOAD_CONTACTS, LOAD_CONTACT_USER, CLEAN_CONTACT_USER } from '../types';
 
 const initialState = {
     contacts: [],
-    userContact: {}
+    userContact: {},
+    add_contact_error: null
 }
 
 const reducer = (state = initialState, action) => {
