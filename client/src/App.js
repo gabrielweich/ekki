@@ -19,7 +19,7 @@ const App = (props) => {
     routes = (
       <Switch>
         <Route path="/account" component={Account} />
-        <Redirect to="account" />
+        <Redirect to="/account" />
       </Switch>
     )
   }

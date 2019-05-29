@@ -1,4 +1,4 @@
-.add-contact-title {
+.add-contact-title, .add-contact-name {
     color: #798086;
 }
 
@@ -7,6 +7,11 @@
     display: flex;
 }
 
-.add-contact-button {
+.add-contact-search-btn {
     margin-left: 10px;
+}
+
+.add-contact-add-btn {
+    display: flex;
+    justify-content: center;
 }

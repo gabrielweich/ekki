@@ -29,7 +29,7 @@ exports.post = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const { userId } = req.session;
-        const contacts = await Contact.findAll({ where: { userId }, include: [{model: User, as: 'user', attributes: ['name']}] })
+        const contacts = await Contact.findAll({ where: { userId }, include: [{ model: User, as: 'contact', attributes: ['name'] }] })
         console.log(contacts)
         res.status(200).send({ data: contacts });
     }
@@ -44,12 +44,12 @@ exports.delete = async (req, res) => {
     try {
         const { userId } = req.session;
         const contactId = req.params.id;
-        console.log({userId, contactId})
-        await Contact.destroy({where: {userId, contactId}})
-        res.status(200).send({ data: {userId, contactId} });
+        console.log({ userId, contactId })
+        await Contact.destroy({ where: { userId, contactId } })
+        res.status(200).send({ data: { userId, contactId } });
 
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
         res.status(500).send({ error: 'Erro desconhecido no servidor' })
     }

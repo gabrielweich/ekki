@@ -27,6 +27,7 @@ class AddContact extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        console.log(this.props)
         return (
             <div>
                 <h3 className="add-contact-title">Adicionar contato</h3>
@@ -43,7 +44,7 @@ class AddContact extends React.Component {
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="add-contact-button">
+                        <Button type="primary" htmlType="submit" className="add-contact-search-btn">
                             Buscar
                         </Button>
                     </Form.Item>
@@ -52,8 +53,11 @@ class AddContact extends React.Component {
                     this.props.userContact.id
                     &&
                     <div>
-                        <h4>{`Nome: ${this.props.userContact.name}`}</h4>
-                        <Button onClick={this.saveContact}>Adicionar</Button>
+                        <h4 className="add-contact-name">{`Nome: ${this.props.userContact.name}`}</h4>
+                        <div className="add-contact-add-btn">
+                            <Button onClick={this.saveContact}>Adicionar</Button>
+                        </div>
+
                     </div>
                 }
             </div>

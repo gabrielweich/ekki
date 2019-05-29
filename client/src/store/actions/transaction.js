@@ -15,7 +15,7 @@ export const loadTransactions = () => async dispatch => {
 
 export const saveTransaction = (amount, contactId) => async dispatch => {
     try {
-        await axios.post('api/transaction', { amount, contactId })
+        await axios.post('/api/transaction', { amount, contactId })
         dispatch(loadAccount())
         dispatch(loadTransactions())
     }

@@ -19,11 +19,11 @@ class Account extends React.Component {
                 <Profile />
                 <div className="account-operation">
                     <Switch>
-                        <Route exact path='/account' component={History} />
-                        <Route path='/account/contact' component={Contact} />
-                        <Route path='/account/add_contact' component={AddContact} />
-                        <Route path='/account/transfer' component={Transfer} />
-                        <Redirect to="/account" />
+                        <Route exact path='/account/history' component={History} />
+                        <Route exact path='/account/contact' component={Contact} />
+                        <Route exact path='/account/add_contact' component={AddContact} />
+                        <Route exact path='/account/transfer' component={Transfer} />
+                        <Redirect to="/account/history" />
                     </Switch>
                 </div>
             </div>

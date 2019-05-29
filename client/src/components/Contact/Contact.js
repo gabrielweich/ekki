@@ -30,7 +30,7 @@ class Contact extends React.Component {
                             ?
                             this.props.contact.contacts.map(contact => {
                                 console.log(contact)
-                                return <div className="contact-item"><h2 className="contact-title">{contact.user.name}</h2><Button onClick={() => this.props.deleteContact(contact.contactId)} shape="circle" icon="delete" /></div>
+                                return <div className="contact-item"><h2 className="contact-title">{contact.contact.name}</h2><Button onClick={() => this.props.deleteContact(contact.contactId)} shape="circle" icon="delete" /></div>
                             })
                             :
                             <h4 className="contact-empty">Você ainda não tem contatos :(</h4>
