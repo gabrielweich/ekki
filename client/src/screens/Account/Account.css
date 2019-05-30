@@ -10,5 +10,5 @@
     border-radius: 15px;
     margin: -50px 15px 15px 15px;
     box-shadow: 0 2px 15px 0 rgba(0,0,0,0.06);
-    min-height: 150px;
+    height: 100%;
 }

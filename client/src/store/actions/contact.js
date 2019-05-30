@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { LOAD_CONTACTS, LOAD_CONTACT_USER, CLEAN_CONTACT_USER } from '../types';
+import { LOAD_CONTACTS, LOAD_CONTACT_USER, CLEAN_CONTACT_USER, SAVE_CONTACT_ERROR, LOAD_CONTACT_USER_ERROR } from '../types';
 
 export const loadContacts = () => async dispatch => {
     try {
@@ -23,7 +23,7 @@ export const loadUser = (cpf) => async dispatch => {
         dispatch({ type: LOAD_CONTACT_USER, payload: res.data.data })
     }
     catch (error) {
-        console.log(error)
+        dispatch({ type: LOAD_CONTACT_USER_ERROR, payload: error.response.data.error })
     }
 }
 
@@ -33,7 +33,7 @@ export const saveContact = (contactId) => async dispatch => {
         dispatch(loadContacts())
     }
     catch (error) {
-        console.log(error)
+        dispatch({ type: SAVE_CONTACT_ERROR, payload: error.response.data.error })
     }
 }
 

@@ -8,7 +8,7 @@ import "./Profile.css";
 
 class Profile extends React.Component {
     render() {
-        console.log(this.props.user)
+
         return (
             <div className="profile-container">
                 <div className="profile-header">
@@ -16,8 +16,9 @@ class Profile extends React.Component {
                     <h3 className="profile-logout" onClick={this.props.logout} >Sair</h3>
                 </div>
                 <div className="profile-info">
-                    <h1>{`Bem-vindo ${this.props.user.name}`}</h1>
-                    <h2>{`R$ ${!!this.props.account.balance ? this.props.account.balance.toLocaleString('pt-BR') : '0,00'}`}</h2>
+                    <h1 className="profile-welcome" >{`Bem-vindo ${this.props.user.name}`}</h1>
+                    <h2 className="profile-balance">{`${!!this.props.account.balance ? this.props.account.balance.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00'}`}</h2>
+                    <h4 className="profile-limit">{`Limite: ${!!this.props.account.limit ? this.props.account.limit.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00'}`}</h4>
                 </div>
                 <div className="profile-action">
                     <Link to="/account">

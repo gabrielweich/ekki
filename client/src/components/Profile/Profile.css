@@ -2,6 +2,7 @@
     background-color: #1890ff;
     padding: 30px;
     display: flex;
+    min-height: 350px;
     max-height: 350px;
     flex: 1;
     flex-direction: column;
@@ -27,9 +28,28 @@ h1, h2, h3 {
 }
 
 .profile-title {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
     cursor: default;
 }
 
+.profile-welcome {
+    font-size: 25px;
+    font-weight: 400;
+}
+.profile-balance {
+    font-size: 25px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0px;
+}
+.profile-limit {
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: white;
+}
 .profile-title:hover {
     color: #dbeeff;
     transition: 0.3s;

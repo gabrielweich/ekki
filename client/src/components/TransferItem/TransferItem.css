@@ -1,0 +1,28 @@
+.transfer-item-container {
+    border-bottom: 1px solid #aaafb350;
+    align-items: center;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transfer-user-name{
+    margin: 0px;
+    font-size: 16px;
+    color: #798086;
+    font-weight: 400;
+}
+
+.amount-negative {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #D8000C;
+}
+
+.amount-positive {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #4BB543;
+}

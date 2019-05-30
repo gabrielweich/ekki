@@ -1,7 +1,7 @@
 import axios from "axios";
 import { loadAccount } from './account';
 
-import { LOAD_TRANSACTIONS } from "../types";
+import { LOAD_TRANSACTIONS, SAVE_TRANSACTION_ERROR } from "../types";
 
 export const loadTransactions = () => async dispatch => {
     try {
@@ -20,7 +20,7 @@ export const saveTransaction = (amount, contactId) => async dispatch => {
         dispatch(loadTransactions())
     }
     catch (error) {
-        console.log(error)
+        dispatch({ type: SAVE_TRANSACTION_ERROR, payload: error.response.data.error })
     }
 }
 

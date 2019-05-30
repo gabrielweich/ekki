@@ -3,6 +3,7 @@
     flex-direction: column;
 }
 
-.transfer-button {
-    
+
+.transfer-form-item {
+    width: 200px;
 }

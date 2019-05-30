@@ -9,7 +9,7 @@ const cookieSession = require('cookie-session');
 const app = express()
 
 app.use(morgan("dev"))
-app.use(bodyParser.urlencoded({ extended: false }));  
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     cookieSession({
@@ -33,7 +33,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
 
 const PORT = process.env.PORT || 8765;
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: false, timezone: '-03:00' }).then(() => {
     app.listen(PORT)
     app.on('error', (error) => console.log(`An error has occurred: ${error}`));
     app.on('listening', () => console.log(`Server listening on port ${PORT}`));

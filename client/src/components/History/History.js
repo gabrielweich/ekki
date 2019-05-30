@@ -3,8 +3,8 @@ import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { loadTransactions } from '../../store/actions/transaction';
 import { Link } from 'react-router-dom';
-
-
+import TransferItem from '../TransferItem/TransferItem';
+import moment from 'moment';
 import './History.css';
 
 class History extends React.Component {
@@ -24,9 +24,8 @@ class History extends React.Component {
                     {
                         this.props.transactions.length
                             ?
-                            this.props.transactions.map(transaction => {
-                                console.log(transaction)
-                                return <div>Gesiel</div>
+                            this.props.transactions.sort((a, b) => moment(b.createdAt) - moment(a.createdAt)).map(transaction => {
+                                return <TransferItem transaction={transaction} user={this.props.user} />
                             })
                             :
                             <h4 className="history-empty">Você ainda não tem uma transação :(</h4>
@@ -38,6 +37,7 @@ class History extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    user: state.user.user,
     transactions: state.transaction.transactions
 })
 

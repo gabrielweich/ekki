@@ -4,7 +4,7 @@ import { Form, Icon, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import { saveTransaction } from '../../store/actions/transaction';
 import { loadContacts } from '../../store/actions/contact';
-import { Select, InputNumber } from 'antd';
+import { Select, InputNumber, Popconfirm } from 'antd';
 
 
 class Transfer extends React.Component {
@@ -23,13 +23,11 @@ class Transfer extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                console.log(this.props)
-                this.props.history.push('/account/add_contact')
-                console.log(this.props)
-                console.log(values)
-                this.props.saveTransaction(this.state.amount, this.state.selectedContactId)
+                await this.props.saveTransaction(this.state.amount, this.state.selectedContactId)
+                if (!this.props.transactionError)
+                    this.props.history.goBack()
             }
         });
     };
@@ -45,11 +43,12 @@ class Transfer extends React.Component {
             <div>
                 <h3 className="add-contact-title">Destinatário</h3>
                 <Form onSubmit={this.handleSubmit} className="transfer-form">
-                    <Form.Item>
+                    <Form.Item className="transfer-form-item">
                         {getFieldDecorator('cpf', {
                             rules: [{ required: true, message: 'Selecione um contato.' }]
                         })(
                             <Select
+                                className="transfer-form-item"
                                 showSearch
                                 labelInValue
                                 placeholder='Selecione o destinatário'
@@ -64,20 +63,35 @@ class Transfer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         {getFieldDecorator('amount', {
-                            rules: [{ required: true, message: 'Selecione um contato.' }],
+                            rules: [{ required: true, message: 'Digite um valor' }],
                         })(
                             <InputNumber
-                                decimalSeparator="."
-                                formatter={value => `R$ ${value}`}
-                                parser={value => value.replace(/R\$\s?|[^\d.-]|(\.*)/g, '')}
+                                placeholder="Valor"
+                                precision={2}
+                                className="transfer-form-item"
+                                decimalSeparator=","
+                                formatter={value => value}
+                                parser={value => { console.log(value); return value }}
                                 onChange={this.handleAmountChange}
                             />
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <Button htmlType="submit" className="transfer-button">
-                            Transferir
-                        </Button>
+                        {
+                            this.state.amount > this.props.account.balance
+                                ?
+                                <Popconfirm title={`Utilizar limite e confirmar a transação? `} okText="Sim" cancelText="Não" onConfirm={this.handleSubmit}>
+
+                                    <Button htmlType="submit" className="transfer-form-item">
+                                        Transferir
+                                    </Button>
+                                </Popconfirm>
+                                :
+                                <Button htmlType="submit" className="transfer-form-item">
+                                    Transferir
+                                </Button>
+                        }
+
                     </Form.Item>
                 </Form>
             </div>
@@ -86,7 +100,9 @@ class Transfer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    contacts: state.contact.contacts
+    account: state.account.account,
+    contacts: state.contact.contacts,
+    transactionError: state.transaction.transactionError
 })
 
 export default connect(mapStateToProps, { saveTransaction, loadContacts })(Form.create({})(Transfer));

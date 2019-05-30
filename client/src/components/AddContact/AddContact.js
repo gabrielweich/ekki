@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddContact.css';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
 import { connect } from 'react-redux';
 
 import { loadUser, saveContact, cleanContactUser } from '../../store/actions/contact';
@@ -20,9 +20,10 @@ class AddContact extends React.Component {
         this.props.cleanContactUser()
     }
 
-    saveContact = () => {
-        this.props.saveContact(this.props.userContact.id)
-        this.props.history.goBack()
+    saveContact = async () => {
+        await this.props.saveContact(this.props.userContact.id)
+        if (!this.props.saveContactError)
+            this.props.history.goBack()
     }
 
     render() {
@@ -49,6 +50,7 @@ class AddContact extends React.Component {
                         </Button>
                     </Form.Item>
                 </Form>
+
                 {
                     this.props.userContact.id
                     &&
@@ -60,6 +62,16 @@ class AddContact extends React.Component {
 
                     </div>
                 }
+                {
+                    this.props.saveContactError
+                    &&
+                    <Typography.Text type="danger">{this.props.saveContactError}</Typography.Text>
+                }
+                {
+                    this.props.loadContactError
+                    &&
+                    <Typography.Text type="danger">{this.props.loadContactUserError}</Typography.Text>
+                }
             </div>
         )
     }
@@ -67,7 +79,9 @@ class AddContact extends React.Component {
 
 const mapStateToProps = state => ({
     userContact: state.contact.userContact,
-    contacts: state.contact.contacts
+    contacts: state.contact.contacts,
+    saveContactError: state.contact.saveContactError,
+    loadContactError: state.contact.loadContactError
 })
 
 export default connect(mapStateToProps, { loadUser, saveContact, cleanContactUser })(Form.create({})(AddContact));

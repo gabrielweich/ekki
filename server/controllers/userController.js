@@ -18,7 +18,7 @@ exports.post = async (req, res) => {
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Erro desconhecido no servidor' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor.' })
     }
 
 }
@@ -28,14 +28,14 @@ exports.login = async (req, res) => {
         const { cpf, password } = req.body;
         const user = await User.findOne({ where: { cpf } })
         if (!user || !(await user.validPassword(password)))
-            return res.status(401).send({ error: 'Credenciais inválidas' })
+            return res.status(401).send({ error: 'Credenciais inválidas.' })
 
         req.session.userId = user.id
         res.status(201).send({ data: user });
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Erro desconhecido no servidor' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor.' })
     }
 }
 
@@ -43,22 +43,22 @@ exports.get = async (req, res) => {
     try {
         const { cpf } = req.params;
         console.log(req.body)
-        const user = await User.findOne({where: { cpf }})
+        const user = await User.findOne({ where: { cpf } })
         if (!user || user.id === req.session.userId)
-            res.status(400).send({error: 'Nenhum usuário com esse cpf foi encontrado'})
-        res.status(200).send({data: {name: user.name, id: user.id }})
+            res.status(400).send({ error: 'Nenhum usuário com esse CPF foi encontrado.' })
+        res.status(200).send({ data: { name: user.name, id: user.id } })
     }
     catch (error) {
         console.log(error)
-        res.status(500).send({ error: 'Erro desconhecido no servidor' })
+        res.status(500).send({ error: 'Erro desconhecido no servidor.' })
     }
 }
 
 exports.logout = async (req, res) => {
     try {
-        const {userId} = req.session;
+        const { userId } = req.session;
         req.session = null
-        res.status(201).send({data: {userId}})
+        res.status(201).send({ data: { userId } })
     }
     catch (error) {
         console.log(error)
