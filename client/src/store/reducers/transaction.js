@@ -1,4 +1,4 @@
-import { LOAD_TRANSACTIONS, SAVE_TRANSACTION_ERROR } from '../types';
+import { LOAD_TRANSACTIONS, SAVE_TRANSACTION_ERROR, SAVE_TRANSACTION_START } from '../types';
 
 const initialState = {
     transactions: [],
@@ -11,6 +11,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, transactions: [...action.payload] }
         case SAVE_TRANSACTION_ERROR:
             return { ...state, transactionError: action.payload }
+        case SAVE_TRANSACTION_START:
+            return { ...state, transactionError: null }
         default: return state;
     }
 }

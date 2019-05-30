@@ -1,6 +1,6 @@
 import React from 'react';
 import './Transfer.css';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, message } from 'antd';
 import { connect } from 'react-redux';
 import { saveTransaction } from '../../store/actions/transaction';
 import { loadContacts } from '../../store/actions/contact';
@@ -28,6 +28,8 @@ class Transfer extends React.Component {
                 await this.props.saveTransaction(this.state.amount, this.state.selectedContactId)
                 if (!this.props.transactionError)
                     this.props.history.goBack()
+                else
+                    message.error(this.props.transactionError)
             }
         });
     };
@@ -38,7 +40,6 @@ class Transfer extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log()
         return (
             <div>
                 <h3 className="add-contact-title">Destinatário</h3>

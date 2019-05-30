@@ -12,19 +12,20 @@ exports.post = async (req, res) => {
         const { contactId, amount } = req.body;
 
         await sequelize.transaction(async (t) => {
-            const userAccount = await Account.findOne({ where: { userId } })
+            const userAccount = await Account.findOne({ where: { userId }, transaction: t })
 
-            if (userAccount.balance < amount) {
-                if (amount > userAccount.balance + userAccount.limit)
+            if (amount > userAccount.balance) {
+                if (amount > userAccount.balance + userAccount.limit && amount > userAccount.limit)
                     return res.status(400).send({ error: 'Saldo insuficiente' })
                 else
                     await Account.decrement('limit', { by: amount - userAccount.balance, where: { userId }, transaction: t })
             }
 
-            const duplicatedTransaction = await Transaction.findOne({ where: { originId: userId, destinyId: contactId, createdAt: { [Op.gte]: moment(new Date()).subtract(TRANSACTION_TIME_LIMIT, "minutes") }, amount } })
+            const duplicatedTransaction = await Transaction.findOne({ where: { originId: userId, destinyId: contactId, createdAt: { [Op.gte]: moment(new Date()).subtract(TRANSACTION_TIME_LIMIT, "minutes") }, amount }, transaction: t })
             if (duplicatedTransaction)
-                await Transaction.destroy({ where: { id: duplicatedTransaction.id } })
-            await Account.decrement('balance', { by: amount, where: { userId }, transaction: t })
+                await Transaction.destroy({ where: { id: duplicatedTransaction.id }, transaction: t })
+            else
+                await Account.decrement('balance', { by: amount, where: { userId }, transaction: t })
             await Account.increment('balance', { by: amount, where: { userId: contactId }, transaction: t })
             await Transaction.create({ originId: userId, destinyId: contactId, amount }, { transaction: t })
         })

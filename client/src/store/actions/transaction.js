@@ -1,7 +1,7 @@
 import axios from "axios";
 import { loadAccount } from './account';
 
-import { LOAD_TRANSACTIONS, SAVE_TRANSACTION_ERROR } from "../types";
+import { LOAD_TRANSACTIONS, SAVE_TRANSACTION_START, SAVE_TRANSACTION_ERROR } from "../types";
 
 export const loadTransactions = () => async dispatch => {
     try {
@@ -15,6 +15,7 @@ export const loadTransactions = () => async dispatch => {
 
 export const saveTransaction = (amount, contactId) => async dispatch => {
     try {
+        dispatch({ type: SAVE_TRANSACTION_START })
         await axios.post('/api/transaction', { amount, contactId })
         dispatch(loadAccount())
         dispatch(loadTransactions())
