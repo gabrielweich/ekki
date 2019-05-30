@@ -30,7 +30,6 @@ exports.getAll = async (req, res) => {
     try {
         const { userId } = req.session;
         const contacts = await Contact.findAll({ where: { userId }, include: [{ model: User, as: 'contact', attributes: ['name'] }] })
-        console.log(contacts)
         res.status(200).send({ data: contacts });
     }
     catch (error) {
@@ -44,7 +43,6 @@ exports.delete = async (req, res) => {
     try {
         const { userId } = req.session;
         const contactId = req.params.id;
-        console.log({ userId, contactId })
         await Contact.destroy({ where: { userId, contactId } })
         res.status(200).send({ data: { userId, contactId } });
 

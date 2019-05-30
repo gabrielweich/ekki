@@ -10,7 +10,6 @@ class AddContact extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(values.cpf)
                 this.props.loadUser(values.cpf)
             }
         });
@@ -28,7 +27,6 @@ class AddContact extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log(this.props)
         return (
             <div>
                 <h3 className="add-contact-title">Adicionar contato</h3>

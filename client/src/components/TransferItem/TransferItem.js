@@ -4,8 +4,6 @@ import { Icon } from 'antd'
 import './TransferItem.css';
 
 const TransferItem = ({ user, transaction }) => {
-    console.log({ user })
-    console.log({ transaction })
     let name, icon, amountClass;
     if (user.id === transaction.originId) {
         name = user.name;

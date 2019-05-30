@@ -38,7 +38,6 @@ export const saveContact = (contactId) => async dispatch => {
 }
 
 export const deleteContact = (contactId) => async dispatch => {
-    console.log({ contactId })
     try {
         const res = await axios.delete(`/api/contact/${contactId}`)
         dispatch(loadContacts())

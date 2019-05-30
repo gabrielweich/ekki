@@ -12,7 +12,6 @@ class SignUp extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("vai signupa")
                 this.props.signup(values)
             }
         });

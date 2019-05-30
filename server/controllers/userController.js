@@ -42,7 +42,6 @@ exports.login = async (req, res) => {
 exports.get = async (req, res) => {
     try {
         const { cpf } = req.params;
-        console.log(req.body)
         const user = await User.findOne({ where: { cpf } })
         if (!user || user.id === req.session.userId)
             res.status(400).send({ error: 'Nenhum usuário com esse CPF foi encontrado.' })

@@ -11,7 +11,6 @@ import './Login.css';
 
 class Login extends React.Component {
     render() {
-        console.log(this.props)
         if (!!this.props.user.id)
             return <Redirect to="/account" />
 

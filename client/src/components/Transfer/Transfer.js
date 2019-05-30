@@ -72,7 +72,7 @@ class Transfer extends React.Component {
                                 className="transfer-form-item"
                                 decimalSeparator=","
                                 formatter={value => value}
-                                parser={value => { console.log(value); return value }}
+                                parser={value => value}
                                 onChange={this.handleAmountChange}
                             />
                         )}
