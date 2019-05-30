@@ -1,5 +1,7 @@
 # Ekki
 
+Deployed at https://ekki4all.herokuapp.com/ 
+
 ### Installation
 
 
